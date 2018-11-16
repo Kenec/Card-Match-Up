@@ -63,4 +63,12 @@ body {
   font-size: 15px;
 }
 
+.card-front {
+
+}
+
+.card-back {
+  background: url('../images/back.jpg') no-repeat;
+}
+
 
