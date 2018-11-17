@@ -6,7 +6,7 @@ body {
 .grid-container {
   /* width: 50%; */
   display: grid;
-  /* justify-content: center; */
+  grid-gap: 1px;
   grid-template-columns: auto auto auto auto;
   padding: 10px 150px 10px 150px;
 }
@@ -64,11 +64,14 @@ body {
 }
 
 .card-front {
-
 }
 
 .card-back {
-  background: url('../images/back.jpg') no-repeat;
+  font-weight: bold;
+}
+
+.react-card-front {
+  position: unset !important;
 }
 
 

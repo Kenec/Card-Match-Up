@@ -1,14 +1,21 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Header from './components/header/Header';
 import Card from './components/card/Card';
 
 import './styles/main.css';
 
-class App extends Component {
+class App extends PureComponent {
 
   state = { 
-    isFlipped: Array(16).fill(false)
-  }
+    isFlipped: Array(16).fill(false),
+    shuffledCard: App.duplicateCard().sort(() => Math.random() - 0.5)
+  };
+
+  static duplicateCard = () => {
+    return [0,1,2,3,4,5,6,7].reduce((preValue, current, index, array) => {
+      return preValue.concat([current, current])
+    },[]);
+  };
 
   handleClick = event => {
     event.preventDefault();
@@ -19,16 +26,25 @@ class App extends Component {
     this.setState(prevState => ({ 
       isFlipped: newFlipps
     }));
-  }
+  };
 
   render() {
+    console.log(this.state.shuffledCard);
     return (
      <div>
        <Header />
        <div className="grid-container">
-          <Card id={0} isFlipped={this.state.isFlipped[0]} handleClick={this.handleClick} />
-          <Card id={1} isFlipped={this.state.isFlipped[1]} handleClick={this.handleClick} />
-          
+          {
+            this.state.shuffledCard.map((cardNumber, index) => 
+              <Card
+                key={index} 
+                id={index} 
+                cardNumber={cardNumber} 
+                isFlipped={this.state.isFlipped[index]} 
+                handleClick={this.handleClick}     
+              />
+            )
+          }
         </div>
      </div>
     );
