@@ -37,7 +37,7 @@ class App extends PureComponent {
       }));
 
       if (this.state.clickCount === 2) {
-        this.setState({ clickCount: 1});
+        this.setState({ clickCount: 1 });
         const prevCardId = this.state.prevCardId;
         const newCard = this.state.shuffledCard[cardId];
         const previousCard = this.state.prevSelectedCard;
