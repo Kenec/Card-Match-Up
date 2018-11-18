@@ -63,7 +63,8 @@ body {
   font-size: 15px;
 }
 
-.card-front {
+.hide-card {
+  visibility: hidden;
 }
 
 .card-back {

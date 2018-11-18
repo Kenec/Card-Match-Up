@@ -49,14 +49,14 @@ class App extends PureComponent {
 
   isCardMatch = (card1, card2, card1Id, card2Id) => {
     if (card1 === card2) {
+      const hideCard = this.state.shuffledCard.slice();
+      hideCard[card1Id] = -1;
+      hideCard[card2Id] = -1;
       setTimeout(() => {
         this.setState(prevState => ({
-          shuffledCard: prevState.shuffledCard.filter((value, index, array) => {
-            return value !== card1
-          }),
-          isFlipped: Array(prevState.shuffledCard.length).fill(false)
+          shuffledCard: hideCard
         }))
-      }, 100);
+      }, 1000);
     } else {
       const flipBack = this.state.isFlipped.slice();
       flipBack[card1Id] = false;
