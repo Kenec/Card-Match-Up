@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import Header from './components/header/Header';
 import Card from './components/card/Card';
+import GameOver from './components/card/GameOver';
 
 import './styles/main.css';
 
@@ -77,10 +78,15 @@ class App extends PureComponent {
     });
   };
 
+  isGameOver = () => {
+    return this.state.isFlipped.every((element, index, array) => element !== false);
+  };
+
   render() {
     return (
      <div>
        <Header restartGame={this.restartGame} />
+       { this.isGameOver() ? <GameOver restartGame={this.restartGame} /> :
        <div className="grid-container">
           {
             this.state.shuffledCard.map((cardNumber, index) => 
@@ -94,6 +100,7 @@ class App extends PureComponent {
             )
           }
         </div>
+       }
      </div>
     );
   }
