@@ -67,10 +67,20 @@ class App extends PureComponent {
     }
   };
 
+  restartGame = () => {
+    this.setState({
+      isFlipped: Array(16).fill(false),
+      shuffledCard: App.duplicateCard().sort(() => Math.random() - 0.5),
+      clickCount: 1,
+      prevSelectedCard: -1,
+      prevCardId: -1
+    });
+  };
+
   render() {
     return (
      <div>
-       <Header />
+       <Header restartGame={this.restartGame} />
        <div className="grid-container">
           {
             this.state.shuffledCard.map((cardNumber, index) => 
